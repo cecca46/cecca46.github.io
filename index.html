@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Francesco Ceccarelli | Personal Page</title>
+  <meta
+    name="description"
+    content="Personal academic page for Francesco Ceccarelli, a Computer Science PhD student interested in machine learning, computational biology, and multimodal scientific data."
+  >
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --paper: rgba(255, 251, 245, 0.86);
+      --ink: #182126;
+      --muted: #526069;
+      --accent: #9f2d1f;
+      --accent-soft: #dfb08d;
+      --line: rgba(24, 33, 38, 0.14);
+      --shadow: 0 18px 50px rgba(80, 58, 30, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(223, 176, 141, 0.55), transparent 34%),
+        radial-gradient(circle at right 20%, rgba(159, 45, 31, 0.08), transparent 28%),
+        linear-gradient(180deg, #f8f2ea 0%, #efe6db 100%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1rem 0 3rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0 1.5rem;
+    }
+
+    .nav__name {
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+    }
+
+    .nav__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .hero,
+    .section,
+    .feature {
+      background: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr 0.9fr;
+      gap: 2rem;
+      padding: 3rem;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      animation: rise 700ms ease-out both;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% -20% auto;
+      width: 260px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(159, 45, 31, 0.18), rgba(159, 45, 31, 0));
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(159, 45, 31, 0.08);
+      color: var(--accent);
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      margin: 0;
+      line-height: 1.04;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.4rem);
+      max-width: 9ch;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    .button,
+    .button--ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 150px;
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .button {
+      background: var(--ink);
+      color: #fff8f1;
+    }
+
+    .button--ghost {
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .button:hover,
+    .button--ghost:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero__card {
+      align-self: end;
+      padding: 1.4rem;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(24, 33, 38, 0.97), rgba(45, 54, 60, 0.92));
+      color: #fff8f1;
+    }
+
+    .hero__card p {
+      color: rgba(255, 248, 241, 0.76);
+      margin: 0.35rem 0 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .hero__stat {
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 248, 241, 0.12);
+    }
+
+    .hero__stat strong {
+      display: block;
+      font-size: 2rem;
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .section {
+      border-radius: 24px;
+      padding: 2rem;
+      animation: rise 700ms ease-out both;
+      animation-delay: 120ms;
+    }
+
+    .section--wide {
+      grid-column: span 7;
+    }
+
+    .section--narrow {
+      grid-column: span 5;
+    }
+
+    .feature {
+      border-radius: 22px;
+      padding: 1.4rem;
+    }
+
+    .stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .research-list,
+    .publication-list,
+    .contact-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .research-list article,
+    .publication-list article {
+      padding: 1rem 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .publication-list span,
+    .muted {
+      color: var(--muted);
+    }
+
+    .publication-list a {
+      text-decoration-color: rgba(159, 45, 31, 0.35);
+    }
+
+    .contact-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.95rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .contact-list a:hover {
+      border-color: rgba(159, 45, 31, 0.35);
+    }
+
+    footer {
+      padding: 1.5rem 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+
+      .section--wide,
+      .section--narrow {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 1rem, 100%);
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero,
+      .section {
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: clamp(2.3rem, 13vw, 4rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="nav__name">Francesco Ceccarelli</div>
+      <nav class="nav__links" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <div>
+          <span class="eyebrow">Personal Page</span>
+          <h1>Francesco Ceccarelli</h1>
+          <p>
+            I am a PhD student at the University of Cambridge with research interests in
+            machine learning, computational biology, graph representation learning, and
+            multimodal scientific data analysis.
+          </p>
+          <p>
+            My work broadly explores how computational methods can learn from structured,
+            heterogeneous, and biologically meaningful data, with applications across
+            protein modelling, spatial biology, and disease-related biomedical research.
+          </p>
+          <div class="hero__actions">
+            <a class="button" href="https://scholar.google.co.uk/citations?hl=en&user=yh6iFrEAAAAJ&view_op=list_works&sortby=pubdate">Google Scholar</a>
+            <a class="button--ghost" href="mailto:fc485@cam.ac.uk">Email Me</a>
+          </div>
+        </div>
+
+        <aside class="hero__card">
+          <h2>Research Interests</h2>
+          <p>
+            Machine learning, computational biology, graph neural networks, geometric
+            deep learning, multimodal learning, spatial omics, and optimal transport.
+          </p>
+          <div class="hero__stat">
+            <strong>Computer Science</strong>
+            <p>Research at the intersection of machine learning methodology and biological applications.</p>
+          </div>
+        </aside>
+      </section>
+
+      <div class="grid">
+        <section class="section section--wide" id="research">
+          <span class="eyebrow">Research</span>
+          <h2>Research interests</h2>
+          <div class="research-list">
+            <article>
+              <h3>Machine learning for structured data</h3>
+              <p class="muted">
+                I am interested in models that can reason over relational, graph-structured,
+                and non-Euclidean data in ways that go beyond standard learning pipelines.
+              </p>
+            </article>
+            <article>
+              <h3>Computational biology</h3>
+              <p class="muted">
+                I work on computational approaches for biological problems, especially where
+                structure, sequence, or spatial context are central to the scientific question.
+              </p>
+            </article>
+            <article>
+              <h3>Multimodal and spatial data integration</h3>
+              <p class="muted">
+                A recurring theme in my work is integrating heterogeneous data sources,
+                including molecular, spatial, and phenotypic information.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section--narrow">
+          <span class="eyebrow">Profile</span>
+          <h2>About me</h2>
+          <div class="stack" style="margin-top: 1.4rem;">
+            <div class="feature">
+              <p class="muted" style="margin: 0;">
+                I am a PhD student at the University of Cambridge, broadly interested in
+                how computer science and machine learning can be used to study complex
+                biological systems.
+              </p>
+            </div>
+            <div class="feature">
+              <p class="muted" style="margin: 0;">
+                My research combines methodological questions in machine learning with
+                practical applications in biology and biomedicine.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--wide" id="publications">
+          <span class="eyebrow">Publications</span>
+          <h2>Selected publications</h2>
+          <div class="publication-list">
+            <article>
+              <strong><a href="https://pubmed.ncbi.nlm.nih.gov/41251164/">OmniPath: integrated knowledgebase for multi-omics analysis</a></strong>
+              <div><span>Nucleic Acids Research, 2026</span></div>
+            </article>
+            <article>
+              <strong><a href="https://dblp.org/rec/journals/corr/abs-2510-06880">MoRE-GNN: Multi-omics Data Integration with a Heterogeneous Graph Autoencoder</a></strong>
+              <div><span>CoRR / arXiv preprint, 2025</span></div>
+            </article>
+            <article>
+              <strong><a href="https://dblp.org/rec/journals/corr/abs-2510-02952">ContextFlow: Context-Aware Flow Matching For Trajectory Inference From Spatial Omics Data</a></strong>
+              <div><span>CoRR / arXiv preprint, 2025</span></div>
+            </article>
+            <article>
+              <strong><a href="https://sciety.org/articles/activity/10.1101/2025.04.15.648894">Topography Aware Optimal Transport for Alignment of Spatial Omics Data</a></strong>
+              <div><span>bioRxiv preprint, 2025</span></div>
+            </article>
+            <article>
+              <strong><a href="https://academic.oup.com/nargab/article-abstract/doi/10.1093/nargab/lqae166/7916346">AnnoGCD: a generalized category discovery framework for automatic cell type annotation</a></strong>
+              <div><span>NAR Genomics and Bioinformatics, 2024</span></div>
+            </article>
+            <article>
+              <strong><a href="https://dblp.org/rec/conf/ijcnn/GiustiRCBL24">Topological Message Passing for Higher-Order and Long-Range Interactions</a></strong>
+              <div><span>IJCNN, 2024</span></div>
+            </article>
+            <article>
+              <strong><a href="https://dblp.org/rec/conf/icpram/CeccarelliGHL24">Integrating Structure and Sequence: Protein Graph Embeddings via GNNs and LLMs</a></strong>
+              <div><span>ICPRAM, 2024</span></div>
+            </article>
+            <article>
+              <strong><a href="https://dblp.org/rec/journals/corr/abs-2306-04667">Neural Embeddings for Protein Graphs</a></strong>
+              <div><span>CoRR / arXiv preprint, 2023</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section--narrow" id="contact">
+          <span class="eyebrow">Find Me</span>
+          <h2>Links</h2>
+          <div class="contact-list">
+            <a href="https://scholar.google.co.uk/citations?hl=en&user=yh6iFrEAAAAJ&view_op=list_works&sortby=pubdate">
+              <span>Google Scholar</span>
+              <span>Open</span>
+            </a>
+            <a href="https://github.com/cecca46">
+              <span>GitHub</span>
+              <span>Open</span>
+            </a>
+            <a href="https://www.linkedin.com/in/francesco-ceccarelli-41a660161/">
+              <span>LinkedIn</span>
+              <span>Open</span>
+            </a>
+            <a href="mailto:fc485@cam.ac.uk">
+              <span>Email</span>
+              <span>Contact</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>
